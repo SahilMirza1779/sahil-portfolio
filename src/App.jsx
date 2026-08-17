@@ -13,11 +13,11 @@ function App() {
         className="flex flex-col items-center justify-center min-h-[90vh] text-center px-4 bg-gray-800 relative overflow-hidden"
         id="home"
       >
-        {/* Background Glowing Orbs (Premium Effect) */}
+        {/* Background Glowing Orbs */}
         <div className="absolute top-1/4 left-1/3 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-[120px] opacity-30 animate-pulse"></div>
         <div className="absolute bottom-1/4 right-1/3 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-[120px] opacity-20 animate-pulse delay-700"></div>
 
-        {/* Profile Image Container with Animated Glow */}
+        {/* Profile Image Container */}
         <div className="mb-8 relative z-10 group">
           <div className="absolute inset-0 bg-linear-to-r from-blue-500 to-purple-600 rounded-full blur-md opacity-75 group-hover:opacity-100 animate-pulse transition duration-500"></div>
           <img
@@ -50,14 +50,13 @@ function App() {
           applications.
         </p>
 
-        {/* Buttons & Quick Links */}
+        {/* Buttons Container */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
           <a
             href="#projects"
             className="group flex items-center justify-center gap-2 bg-linear-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold py-4 px-8 rounded-full transform hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] transition-all duration-300"
           >
             <span>Explore My Work</span>
-            {/* Arrow Icon with hover effect */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -70,6 +69,30 @@ function App() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          </a>
+
+          {/* New Download CV Button */}
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center justify-center gap-2 bg-gray-900 border border-gray-700 hover:border-blue-500 text-gray-300 hover:text-white font-bold py-4 px-8 rounded-full transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(37,99,235,0.3)] transition-all duration-300"
+          >
+            <span>View Resume</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-5 h-5 group-hover:scale-110 transition-transform"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
               />
             </svg>
           </a>
@@ -100,13 +123,8 @@ function App() {
         </div>
       </div>
 
-      {/* About Section */}
       <About />
-
-      {/* Projects Section */}
       <Projects />
-
-      {/* Contact Section */}
       <Contact />
     </div>
   );

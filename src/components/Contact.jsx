@@ -150,13 +150,20 @@ const Contact = () => {
 
           {/* Right Side: Contact Form */}
           <div className="bg-gray-800/50 p-8 rounded-2xl border border-gray-700 hover:border-blue-500/50 shadow-xl transition-all duration-500">
-            <form className="space-y-6 text-left">
+            {/* Maine aapka link yahan laga diya hai */}
+            <form
+              action="https://formspree.io/f/xppaypeo"
+              method="POST"
+              className="space-y-6 text-left"
+            >
               <div>
                 <label className="block text-sm font-medium text-gray-400 mb-2">
                   Full Name
                 </label>
                 <input
                   type="text"
+                  name="name"
+                  required
                   placeholder="Sahil Mirza"
                   className="w-full bg-gray-900 border border-gray-700 rounded-xl px-5 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent hover:border-gray-500 transition-all duration-300"
                 />
@@ -167,6 +174,8 @@ const Contact = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
+                  required
                   placeholder="your.email@example.com"
                   className="w-full bg-gray-900 border border-gray-700 rounded-xl px-5 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent hover:border-gray-500 transition-all duration-300"
                 />
@@ -176,13 +185,16 @@ const Contact = () => {
                   Your Message
                 </label>
                 <textarea
+                  name="message"
                   rows="4"
+                  required
                   placeholder="Let's talk about..."
                   className="w-full bg-gray-900 border border-gray-700 rounded-xl px-5 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent hover:border-gray-500 transition-all duration-300 resize-none"
                 ></textarea>
               </div>
+
               <button
-                type="button"
+                type="submit"
                 className="w-full bg-linear-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold py-4 px-8 rounded-xl transform hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] transition-all duration-300 mt-2 flex justify-center items-center space-x-2"
               >
                 <span>Send Message</span>

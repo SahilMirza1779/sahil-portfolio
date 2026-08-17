@@ -6,7 +6,7 @@ const Projects = () => {
         "A comprehensive school management platform designed to handle administrative tasks, student records, and daily operations efficiently.",
       techStack: ["PHP", "Xampp"],
       githubLink: null, // Null rakha hai taaki button na dikhe
-      liveLink: "#",
+      liveLink: null,
     },
     {
       title: "Nexus Arena (Turn Booking System)",
@@ -14,7 +14,7 @@ const Projects = () => {
         "A dynamic slot booking and management system built for sports arenas to handle reservations, schedules, and user turns seamlessly.",
       techStack: ["Web API", ".NET MVC", "Visual Studio"],
       githubLink: "#",
-      liveLink: "#",
+      liveLink: null,
     },
     {
       title: "Noor E Amal (Islamic Tracker App)",
@@ -22,7 +22,7 @@ const Projects = () => {
         "A dedicated application designed with Web APIs and a robust database backend to help users track and manage their daily activities.",
       techStack: ["Web API", ".NET MVC", "SSMS"],
       githubLink: "#",
-      liveLink: "#",
+      liveLink: null,
     },
   ];
 
