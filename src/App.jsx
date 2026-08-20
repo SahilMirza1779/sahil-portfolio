@@ -1,131 +1,137 @@
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import Navbar from "./components/Navbar";
 import About from "./components/About";
+import Timeline from "./components/Timeline";
+import Services from "./components/Services";
+import Hobbies from "./components/Hobbies";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false, // Scroll up/down karne par repeat animation hoga
+      mirror: true,
+      offset: 50,
+      easing: "ease-out-cubic",
+    });
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gray-800 font-sans pt-20">
+    <div className="font-sans selection:bg-gray-500/30 selection:text-white bg-black overflow-hidden relative">
+      {/* Navbar ko direct render kiya hai taaki ye top par hamesha clean dikhe */}
       <Navbar />
 
-      {/* Main Hero Section */}
-      <div
-        className="flex flex-col items-center justify-center min-h-[90vh] text-center px-4 bg-gray-800 relative overflow-hidden"
+      <main
+        className="relative flex flex-col justify-end min-h-screen px-6 md:px-16 lg:px-24 pb-24 md:pb-32"
         id="home"
       >
-        {/* Background Glowing Orbs */}
-        <div className="absolute top-1/4 left-1/3 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-[120px] opacity-30 animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/3 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-[120px] opacity-20 animate-pulse delay-700"></div>
-
-        {/* Profile Image Container */}
-        <div className="mb-8 relative z-10 group">
-          <div className="absolute inset-0 bg-linear-to-r from-blue-500 to-purple-600 rounded-full blur-md opacity-75 group-hover:opacity-100 animate-pulse transition duration-500"></div>
-          <img
-            src="/profile.jpg"
-            alt="Sahil Mirza"
-            className="relative w-44 h-44 object-cover rounded-full border-4 border-gray-900 shadow-2xl transition duration-500 transform group-hover:scale-105 group-hover:rotate-3"
-            onError={(e) => {
-              e.target.src =
-                "https://ui-avatars.com/api/?name=Sahil+Mirza&background=2563eb&color=fff&size=200";
-            }}
-          />
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 z-0 bg-black"
+          data-aos="fade-in"
+          data-aos-duration="2000"
+        >
+          <div className="absolute top-0 right-0 w-full md:w-[45%] h-full">
+            <img
+              src="/Sahil_photo.jpg"
+              alt="Sahil Mirza"
+              className="w-full h-full object-cover object-center transform -scale-x-100 opacity-80"
+              onError={(e) => {
+                e.target.src =
+                  "https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=2000&auto=format&fit=crop";
+              }}
+            />
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black via-black/40 to-transparent pointer-events-none"></div>
+            <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-black to-transparent pointer-events-none"></div>
+          </div>
+          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none"></div>
         </div>
 
-        {/* Greeting & Name */}
-        <p className="text-blue-400 text-lg mb-3 font-semibold tracking-widest uppercase relative z-10">
-          Hello World, I am
-        </p>
-        <h1 className="text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-blue-500 to-purple-500 mb-6 relative z-10 transform hover:scale-105 transition duration-300 cursor-default">
-          Sahil Mirza
-        </h1>
-
-        {/* Bio */}
-        <p className="text-xl text-gray-400 mb-10 max-w-2xl leading-relaxed relative z-10">
-          An <span className="text-gray-200 font-semibold">MCA Graduate</span>{" "}
-          and{" "}
-          <span className="text-gray-200 font-semibold">
-            Software Developer
-          </span>{" "}
-          passionate about building robust, modern, and scalable web
-          applications.
-        </p>
-
-        {/* Buttons Container */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
-          <a
-            href="#projects"
-            className="group flex items-center justify-center gap-2 bg-linear-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold py-4 px-8 rounded-full transform hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] transition-all duration-300"
+        {/* Content Area */}
+        <div className="relative z-10 max-w-2xl">
+          <h1
+            data-aos="fade-right"
+            className="text-5xl md:text-7xl lg:text-[5.5rem] font-light tracking-tight text-white leading-[1.05] mb-6"
           >
-            <span>Explore My Work</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2.5}
-              stroke="currentColor"
-              className="w-5 h-5 group-hover:translate-y-1 transition-transform"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg>
-          </a>
+            Code isn't written. <br />
+            It's{" "}
+            <span className="font-extrabold text-[#e3563b]">
+              engineered.
+            </span>{" "}
+            <br />I build first.
+          </h1>
 
-          {/* New Download CV Button */}
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center justify-center gap-2 bg-gray-900 border border-gray-700 hover:border-blue-500 text-gray-300 hover:text-white font-bold py-4 px-8 rounded-full transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(37,99,235,0.3)] transition-all duration-300"
+          <p
+            data-aos="fade-right"
+            data-aos-delay="200"
+            className="text-base md:text-lg text-gray-400 max-w-xl font-light leading-relaxed mb-10"
           >
-            <span>View Resume</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-5 h-5 group-hover:scale-110 transition-transform"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
-              />
-            </svg>
-          </a>
+            .NET & MERN Stack Developer based in Surat. I specialize in building
+            robust backend architectures and dynamic interfaces.
+          </p>
 
-          {/* Quick Social Icons */}
-          <div className="flex gap-4 sm:ml-2 mt-4 sm:mt-0">
+          <div
+            data-aos="fade-up"
+            data-aos-delay="400"
+            className="flex flex-wrap gap-4 pt-4 md:pt-6"
+          >
             <a
-              href="https://github.com/SahilMirza1779"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 bg-gray-900/50 border border-gray-700 hover:border-blue-500 text-gray-400 hover:text-white rounded-full transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+              href="#projects"
+              className="px-8 py-3.5 bg-[#e3563b] text-white text-xs font-bold tracking-[0.2em] uppercase rounded-full hover:bg-[#c94930] hover:shadow-[0_0_25px_rgba(227,86,59,0.3)] transition-all duration-300 flex items-center gap-2 group"
             >
-              <svg fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              View My Work
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                />
               </svg>
             </a>
             <a
-              href="https://www.linkedin.com/in/sahil-mirza-sahil-mirzadev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 bg-gray-900/50 border border-gray-700 hover:border-blue-500 text-gray-400 hover:text-white rounded-full transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(37,99,235,0.4)] hover:bg-blue-600"
+              href="#contact"
+              className="px-8 py-3.5 border border-white/20 text-white text-xs font-bold tracking-[0.2em] uppercase rounded-full hover:border-[#e3563b] hover:text-[#e3563b] hover:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all duration-300 flex items-center gap-2"
             >
-              <svg fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              Let's Collaborate
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-4 h-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                />
               </svg>
             </a>
           </div>
         </div>
-      </div>
+      </main>
 
-      <About />
-      <Projects />
-      <Contact />
+      <div className="relative z-20 bg-black">
+        <About />
+        <Timeline />
+        <Services />
+        <Projects />
+        <Hobbies />
+        <Contact />
+      </div>
     </div>
   );
 }

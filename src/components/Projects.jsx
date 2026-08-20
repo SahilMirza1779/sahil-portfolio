@@ -1,68 +1,81 @@
 const Projects = () => {
-  const projectList = [
+  const projects = [
     {
-      title: "Smart Schooling (School Management System)",
+      id: "01",
+      title: "Smart Schooling",
+      subtitle: "School Management System",
       description:
         "A comprehensive school management platform designed to handle administrative tasks, student records, and daily operations efficiently.",
-      techStack: ["PHP", "Xampp"],
-      githubLink: null, // Null rakha hai taaki button na dikhe
-      liveLink: null,
+      tech: ["PHP", "Xampp"],
+      github: null,
+      aos: "fade-right",
     },
     {
-      title: "Nexus Arena (Turn Booking System)",
+      id: "02",
+      title: "Nexus Arena",
+      subtitle: "Turn Booking System",
       description:
         "A dynamic slot booking and management system built for sports arenas to handle reservations, schedules, and user turns seamlessly.",
-      techStack: ["Web API", ".NET MVC", "Visual Studio"],
-      githubLink: "#",
-      liveLink: null,
+      tech: ["Web API", ".NET MVC", "Visual Studio"],
+      github: "https://github.com/SahilMirza1779/NexusArena.API",
+      aos: "fade-left",
     },
     {
-      title: "Noor E Amal (Islamic Tracker App)",
+      id: "03",
+      title: "Noor E Amal",
+      subtitle: "Islamic Tracker App",
       description:
         "A dedicated application designed with Web APIs and a robust database backend to help users track and manage their daily activities.",
-      techStack: ["Web API", ".NET MVC", "SSMS"],
-      githubLink: "#",
-      liveLink: null,
+      tech: ["Web API", ".NET MVC", "SSMS"],
+      github: "https://github.com/SahilMirza1779/NoorEAmal.API",
+      aos: "fade-right",
     },
   ];
 
   return (
     <section
-      className="bg-gray-800 text-white py-24 px-4 relative overflow-hidden"
       id="projects"
+      className="relative bg-black py-24 md:py-32 px-6 md:px-16 lg:px-24 border-t border-white/5 overflow-hidden"
     >
-      {/* Subtle Background Glow */}
-      <div className="absolute bottom-0 left-0 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-[120px] opacity-10 animate-pulse"></div>
+      <div className="absolute top-20 right-4 md:right-10 text-[100px] md:text-[150px] font-extrabold text-white/[0.02] tracking-tighter pointer-events-none select-none text-right">
+        WORK
+      </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Animated Title */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-blue-600 inline-block transform hover:scale-105 transition duration-300">
-            Featured Projects
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div data-aos="fade-down" className="mb-20 md:mb-32">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-8 h-[1px] bg-[#e3563b]"></div>
+            <p className="text-[#e3563b] text-xs md:text-sm font-bold tracking-[0.3em] uppercase">
+              Featured Work
+            </p>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white tracking-tight leading-tight">
+            Engineered <br className="hidden md:block" />
+            <span className="font-extrabold">solutions.</span>
           </h2>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {projectList.map((project, index) => (
+        <div className="flex flex-col gap-12 md:gap-24">
+          {projects.map((project, index) => (
             <div
               key={index}
-              className="group bg-gray-900/80 backdrop-blur-md rounded-2xl p-8 border border-gray-700 hover:border-blue-500/50 shadow-xl hover:shadow-[0_10px_30px_rgba(37,99,235,0.2)] hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between relative overflow-hidden"
+              data-aos={project.aos}
+              className="group relative flex flex-col lg:flex-row gap-8 lg:gap-16 items-start lg:items-center p-8 md:p-12 lg:p-16 bg-[#080808] border border-white/5 rounded-[2rem] hover:border-white/15 transition-all duration-500 hover:shadow-2xl hover:shadow-[#e3563b]/5"
             >
-              {/* Magic Top Border on Hover */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-blue-500 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+              <div className="absolute top-4 right-8 text-[8rem] md:text-[12rem] font-black text-white/[0.02] group-hover:text-[#e3563b]/5 transition-colors duration-500 pointer-events-none select-none leading-none">
+                {project.id}
+              </div>
 
-              <div>
-                {/* Folder Icon Section */}
-                <div className="mb-6 flex justify-between items-center">
-                  <div className="p-3 bg-blue-900/30 text-blue-400 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+              <div className="flex-1 z-10">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 bg-black/50 border border-white/10 rounded-xl group-hover:border-[#e3563b]/50 group-hover:shadow-[0_0_15px_rgba(227,86,59,0.2)] transition-all duration-500">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
-                      className="w-8 h-8"
+                      className="w-6 h-6 text-[#e3563b]"
                     >
                       <path
                         strokeLinecap="round"
@@ -71,72 +84,74 @@ const Projects = () => {
                       />
                     </svg>
                   </div>
+                  <h4 className="text-sm md:text-base font-bold tracking-[0.1em] text-white/50 uppercase">
+                    {project.subtitle}
+                  </h4>
                 </div>
 
-                {/* Content */}
-                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors duration-300">
+                <h3 className="text-3xl md:text-4xl font-extrabold text-white mb-6 group-hover:text-[#e3563b] transition-colors duration-500">
                   {project.title}
                 </h3>
-                <p className="text-gray-400 mb-6 text-base leading-relaxed h-24 overflow-hidden">
+
+                <p className="text-base md:text-lg text-gray-400 font-light leading-relaxed max-w-2xl mb-10">
                   {project.description}
                 </p>
 
-                {/* Tech Stack Pills */}
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {project.techStack.map((tech, techIndex) => (
+                <div className="flex flex-wrap gap-3 mb-10">
+                  {project.tech.map((tech, idx) => (
                     <span
-                      key={techIndex}
-                      className="bg-gray-800 border border-gray-600 text-gray-300 text-xs px-4 py-1.5 rounded-full group-hover:border-blue-500/50 group-hover:text-blue-300 transition-colors duration-300"
+                      key={idx}
+                      className="px-4 py-2 bg-black border border-white/10 rounded-full text-xs font-medium text-gray-300 group-hover:border-white/20 transition-colors"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
-              </div>
 
-              {/* Action Links (Icons + Text) */}
-              <div className="flex items-center space-x-6 pt-5 border-t border-gray-800">
-                {project.githubLink && (
-                  <a
-                    href={project.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition-colors duration-300 group/link"
-                  >
-                    <svg
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      className="w-5 h-5 group-hover/link:scale-110 transition-transform"
+                <div className="flex items-center gap-6">
+                  {project.github ? (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 text-sm font-bold text-white tracking-widest uppercase hover:text-[#e3563b] transition-colors group/btn"
                     >
-                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                    </svg>
-                    Code
-                  </a>
-                )}
-                {project.liveLink && (
-                  <a
-                    href={project.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors duration-300 group/link"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={2}
-                      stroke="currentColor"
-                      className="w-5 h-5 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                      />
-                    </svg>
-                    Live Demo
-                  </a>
-                )}
+                      View Code
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="w-4 h-4 group-hover/btn:translate-x-2 transition-transform duration-300"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                        />
+                      </svg>
+                    </a>
+                  ) : (
+                    <div className="flex items-center gap-3 text-sm font-bold text-gray-600 tracking-widest uppercase cursor-not-allowed">
+                      Private Code
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="w-4 h-4"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                        />
+                      </svg>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           ))}
