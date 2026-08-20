@@ -24,35 +24,38 @@ function App() {
     const finalWord2 = "MIRZA";
     const chars = "0101019876543210><}{][!@#$*%";
 
-    // Progress Bar Counter
     const countInterval = setInterval(() => {
       setCounter((prev) => {
         const next = prev + 1;
 
-        // --- 85% par Name Reveal Logic ---
-        if (next >= 80) {
-          setText1(finalWord1);
-          setText2(finalWord2);
-        } else {
-          // Scramble logic jab tak 85% nahi hota
-          setText1(
-            finalWord1
-              .split("")
-              .map(() => chars[Math.floor(Math.random() * chars.length)])
-              .join(""),
-          );
-          setText2(
-            finalWord2
-              .split("")
-              .map(() => chars[Math.floor(Math.random() * chars.length)])
-              .join(""),
-          );
-        }
+        // --- Ek-ek letter reveal logic (step-by-step) ---
+        // Progress ke hisaab se letters unlock honge
+        const revealIndex = Math.floor((next / 100) * 10);
+
+        setText1(
+          finalWord1
+            .split("")
+            .map((letter, i) => {
+              if (i < revealIndex) return finalWord1[i];
+              return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join(""),
+        );
+
+        setText2(
+          finalWord2
+            .split("")
+            .map((letter, i) => {
+              if (i + 5 < revealIndex) return finalWord2[i]; // +5 taki pehle SAHIL ho jaye phir MIRZA
+              return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join(""),
+        );
 
         if (next >= 100) clearInterval(countInterval);
         return next;
       });
-    }, 30); // 3 seconds me load hoga
+    }, 30);
 
     const hideTimer = setTimeout(() => {
       setIsLoading(false);
@@ -87,16 +90,19 @@ function App() {
           className={`fixed inset-0 z-[999] bg-[#030303] flex flex-col items-center justify-center transition-transform duration-1000 ease-[cubic-bezier(0.77,0,0.175,1)] ${isLoading ? "translate-y-0" : "-translate-y-full"}`}
         >
           <div className="flex flex-col items-center">
+            {/* Typewriter Effect Name Reveal */}
             <h1 className="text-2xl md:text-4xl font-mono font-extrabold tracking-[0.4em] uppercase mb-8 opacity-90">
               <span className="text-white">{text1}</span>{" "}
               <span className="text-[#e3563b]">{text2}</span>
             </h1>
+
             <div className="w-48 md:w-64 h-[2px] bg-white/10 rounded-full overflow-hidden mb-6">
               <div
                 className="h-full bg-[#e3563b] transition-all duration-75 ease-linear shadow-[0_0_10px_#e3563b]"
                 style={{ width: `${counter}%` }}
               ></div>
             </div>
+
             <p className="text-white/50 text-[10px] md:text-xs font-bold tracking-[0.5em] font-mono">
               {counter}%
             </p>
@@ -105,11 +111,11 @@ function App() {
       )}
 
       <Navbar />
+      {/* ... Baki website content same rahega ... */}
       <main
         className="relative flex flex-col justify-end min-h-screen px-6 md:px-16 lg:px-24 pb-24 md:pb-32"
         id="home"
       >
-        {/* Background & Content stays same */}
         <div
           className="absolute inset-0 z-0 bg-black"
           data-aos="fade-in"
