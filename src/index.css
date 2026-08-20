@@ -1,5 +1,37 @@
 @import "tailwindcss";
 
-html {
+/* HTML aur Body ko strictly black set kiya taaki transparent track ke piche white na dikhe */
+html,
+body {
   scroll-behavior: smooth;
+  background-color: #000000;
+  /* Firefox ke liye floating effect */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+/* ========================================= */
+/* 🚀 PREMIUM FLOATING SCROLLBAR 🚀          */
+/* ========================================= */
+
+/* Scrollbar ki width (Sleek and thin) */
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent; /* Pura scrollbar transparent */
+}
+
+/* Scrollbar ka track (Background - Ekdum Invisible) */
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Scrollbar ka thumb (Draggable part - Glassy effect) */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.15); /* Halka white glass jaisa */
+  border-radius: 10px;
+}
+
+/* Hover karne par Sexy Orange Glow */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #e3563b;
 }

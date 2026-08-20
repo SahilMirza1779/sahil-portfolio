@@ -1,0 +1,24 @@
+/* ========================================= */
+/* 🚀 PREMIUM CUSTOM SCROLLBAR 🚀            */
+/* ========================================= */
+
+/* Scrollbar ki width (Sleek and thin) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Scrollbar ka track (Background - Dark) */
+::-webkit-scrollbar-track {
+  background: #030303;
+}
+
+/* Scrollbar ka thumb (Draggable part - Dark Gray) */
+::-webkit-scrollbar-thumb {
+  background: #222222;
+  border-radius: 10px;
+}
+
+/* Hover karne par Sexy Orange Glow */
+::-webkit-scrollbar-thumb:hover {
+  background: #e3563b;
+}

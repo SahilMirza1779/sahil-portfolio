@@ -8,14 +8,16 @@ import Timeline from "./components/Timeline";
 import Services from "./components/Services";
 import Hobbies from "./components/Hobbies";
 import Projects from "./components/Projects";
+import Certifications from "./components/Certifications"; // Yahan naya import
 import Contact from "./components/Contact";
 
 function App() {
   useEffect(() => {
+    // Yahan humara cinematic scroll animation initialize ho raha hai
     AOS.init({
       duration: 1000,
-      once: false, // Scroll up/down karne par repeat animation hoga
-      mirror: true,
+      once: false, // Scroll up karne par reverse hoga
+      mirror: true, // Wapas aane par fir animate hoga
       offset: 50,
       easing: "ease-out-cubic",
     });
@@ -23,7 +25,6 @@ function App() {
 
   return (
     <div className="font-sans selection:bg-gray-500/30 selection:text-white bg-black overflow-hidden relative">
-      {/* Navbar ko direct render kiya hai taaki ye top par hamesha clean dikhe */}
       <Navbar />
 
       <main
@@ -129,6 +130,10 @@ function App() {
         <Timeline />
         <Services />
         <Projects />
+
+        {/* Naya Certifications Section Yahan Render Hoga */}
+        <Certifications />
+
         <Hobbies />
         <Contact />
       </div>
