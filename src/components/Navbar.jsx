@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false); // Mobile menu state
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false); // Side contact drawer state
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // Jab mobile menu ya side drawer khule toh piche ka page scroll na ho
   useEffect(() => {
     if (isDrawerOpen || isOpen) {
       document.body.style.overflow = "hidden";
@@ -27,12 +26,12 @@ const Navbar = () => {
           SAHIL MIRZA
         </a>
 
-        {/* Tahlani Level Menu with Icons (Desktop) */}
-        <div className="hidden md:flex items-center gap-6">
+        {/* Desktop Menu */}
+        <div className="hidden lg:flex items-center gap-6">
           <div className="flex items-center gap-4 bg-white/5 p-4 rounded-full backdrop-blur-md border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.1)]">
             <a
               href="#projects"
-              className="flex items-center gap-2.5 text-xs font-medium tracking-[0.15em] text-white/70 hover:text-white transition-colors group"
+              className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.15em] text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 group"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -50,9 +49,10 @@ const Navbar = () => {
               </svg>
               PROJECTS
             </a>
+
             <a
               href="#hobbies"
-              className="flex items-center gap-2.5 text-xs font-medium tracking-[0.15em] text-white/70 hover:text-white transition-colors group"
+              className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.15em] text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 group"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -75,9 +75,10 @@ const Navbar = () => {
               </svg>
               HOBBIES
             </a>
+
             <a
               href="#about"
-              className="flex items-center gap-2.5 text-xs font-medium tracking-[0.15em] text-white/70 hover:text-white transition-colors group"
+              className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.15em] text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 group"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -95,9 +96,10 @@ const Navbar = () => {
               </svg>
               ABOUT
             </a>
+
             <a
               href="#journey"
-              className="flex items-center gap-2.5 text-xs font-medium tracking-[0.15em] text-white/70 hover:text-white transition-colors group"
+              className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.15em] text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 group"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -115,11 +117,34 @@ const Navbar = () => {
               </svg>
               JOURNEY
             </a>
+
+            {/* NAYA CREDENTIALS LINK */}
+            <a
+              href="#certifications"
+              className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.15em] text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 group"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-4 h-4 text-white/50 group-hover:text-[#e3563b] transition-colors"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4.26 10.147a60.436 60.436 0 0014.476 0l3.159-1.218a.75.75 0 000-1.398L12.35 4.318a.75.75 0 00-.7 0L2.105 7.531a.75.75 0 000 1.398l3.158 1.218zM12 14.592l-8.5-3.276v4.757a.75.75 0 00.418.672c2.477 1.258 5.347 1.955 8.082 1.955s5.605-.697 8.082-1.955a.75.75 0 00.418-.672v-4.757l-8.5 3.276z"
+                />
+              </svg>
+              CREDENTIALS
+            </a>
+
             <a
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2.5 text-xs font-medium tracking-[0.15em] text-white/70 hover:text-white transition-colors group"
+              className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.15em] text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 group"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -137,9 +162,10 @@ const Navbar = () => {
               </svg>
               RESUME
             </a>
+
             <a
               href="#contact"
-              className="flex items-center gap-2.5 text-xs font-medium tracking-[0.15em] text-white/70 hover:text-white transition-colors group"
+              className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.15em] text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 group"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -159,9 +185,10 @@ const Navbar = () => {
             </a>
           </div>
 
+          {/* Drawer Button */}
           <button
             onClick={() => setIsDrawerOpen(true)}
-            className="w-10 h-10 bg-white/5 hover:bg-white/10 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors cursor-pointer border border-white/10 ml-4 focus:outline-none"
+            className="w-10 h-10 bg-white/5 hover:bg-[#e3563b]/10 rounded-full flex items-center justify-center text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-white/10 hover:border-[#e3563b]/50 hover:shadow-[0_0_15px_rgba(227,86,59,0.3)] ml-4 focus:outline-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -181,13 +208,12 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="text-white focus:outline-none"
           >
             {isOpen ? (
-              // Close Icon jab menu open ho
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -203,7 +229,6 @@ const Navbar = () => {
                 />
               </svg>
             ) : (
-              // Hamburger Icon
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -222,21 +247,15 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* ========================================= */}
-        {/* 📱 MOBILE MENU & BACKDROP 📱 */}
-        {/* ========================================= */}
-
-        {/* Mobile Menu Background Blur Overlay */}
+        {/* Mobile Menu Dropdown */}
         {isOpen && (
           <div
-            className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-md z-[45]"
+            className="lg:hidden fixed inset-0 bg-black/40 backdrop-blur-md z-[45]"
             onClick={() => setIsOpen(false)}
           ></div>
         )}
-
-        {/* Mobile Menu Dropdown - UPDATED: Transparent & Blurred Background */}
         {isOpen && (
-          <div className="md:hidden absolute top-24 right-6 bg-black/20 backdrop-blur-lg rounded-2xl shadow-2xl shadow-black flex flex-col text-xs font-bold tracking-widest text-[#e3563b] z-50 border border-[#e3563b]/40 overflow-hidden w-56">
+          <div className="lg:hidden absolute top-24 right-6 bg-black/20 backdrop-blur-lg rounded-2xl shadow-2xl shadow-black flex flex-col text-xs font-bold tracking-widest text-[#e3563b] z-50 border border-[#e3563b]/40 overflow-hidden w-56">
             <a
               href="#projects"
               onClick={() => setIsOpen(false)}
@@ -258,7 +277,6 @@ const Navbar = () => {
               </svg>
               PROJECTS
             </a>
-
             <a
               href="#hobbies"
               onClick={() => setIsOpen(false)}
@@ -285,7 +303,6 @@ const Navbar = () => {
               </svg>
               HOBBIES
             </a>
-
             <a
               href="#about"
               onClick={() => setIsOpen(false)}
@@ -307,7 +324,6 @@ const Navbar = () => {
               </svg>
               ABOUT
             </a>
-
             <a
               href="#journey"
               onClick={() => setIsOpen(false)}
@@ -328,6 +344,29 @@ const Navbar = () => {
                 />
               </svg>
               JOURNEY
+            </a>
+
+            {/* NAYA CREDENTIALS MOBILE LINK */}
+            <a
+              href="#certifications"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-3 px-6 py-4 border-b border-[#e3563b]/20 hover:bg-white/10 transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="w-4 h-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4.26 10.147a60.436 60.436 0 0014.476 0l3.159-1.218a.75.75 0 000-1.398L12.35 4.318a.75.75 0 00-.7 0L2.105 7.531a.75.75 0 000 1.398l3.158 1.218zM12 14.592l-8.5-3.276v4.757a.75.75 0 00.418.672c2.477 1.258 5.347 1.955 8.082 1.955s5.605-.697 8.082-1.955a.75.75 0 00.418-.672v-4.757l-8.5 3.276z"
+                />
+              </svg>
+              CREDENTIALS
             </a>
 
             <a
@@ -353,7 +392,6 @@ const Navbar = () => {
               </svg>
               RESUME
             </a>
-
             <a
               href="#contact"
               onClick={() => setIsOpen(false)}
@@ -379,15 +417,11 @@ const Navbar = () => {
         )}
       </nav>
 
-      {/* ========================================= */}
-      {/* 🚀 SIDE CONTACT DRAWER (Tahlani Style) 🚀 */}
-      {/* ========================================= */}
-
+      {/* Side Contact Drawer */}
       <div
         className={`fixed inset-0 bg-black/60 z-[100] backdrop-blur-none transition-all duration-300 ease-in-out ${isDrawerOpen ? "opacity-100 backdrop-blur-sm" : "opacity-0 backdrop-blur-none pointer-events-none"}`}
         onClick={() => setIsDrawerOpen(false)}
       ></div>
-
       <div
         className={`fixed top-0 right-0 h-screen w-full md:w-[450px] bg-[#141414] z-[101] shadow-2xl transform transition-transform duration-500 ease-in-out flex flex-col ${isDrawerOpen ? "translate-x-0" : "translate-x-full"}`}
       >
@@ -412,13 +446,11 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-
         <div className="flex-grow p-10 overflow-y-auto">
           <h2 className="text-4xl font-light text-white mb-2">Let's talk.</h2>
           <p className="text-sm text-gray-400 font-light mb-10">
             Drop your details, I'll set up a walkthrough call within 24 hours.
           </p>
-
           <form className="space-y-6">
             <div className="space-y-2">
               <label className="text-xs font-bold text-white/60 tracking-wider uppercase">
@@ -430,7 +462,6 @@ const Navbar = () => {
                 className="w-full bg-[#1c1c1c] border border-white/5 rounded-md p-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-[#e3563b]/50 transition-colors"
               />
             </div>
-
             <div className="space-y-2">
               <label className="text-xs font-bold text-white/60 tracking-wider uppercase">
                 Contact *
@@ -441,7 +472,6 @@ const Navbar = () => {
                 className="w-full bg-[#1c1c1c] border border-white/5 rounded-md p-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-[#e3563b]/50 transition-colors"
               />
             </div>
-
             <div className="space-y-2">
               <label className="text-xs font-bold text-white/60 tracking-wider uppercase">
                 Notes
@@ -452,7 +482,6 @@ const Navbar = () => {
                 className="w-full bg-[#1c1c1c] border border-white/5 rounded-md p-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-[#e3563b]/50 transition-colors resize-none"
               ></textarea>
             </div>
-
             <button
               type="submit"
               className="w-full bg-[#e3563b] text-white font-bold tracking-[0.2em] py-4 rounded-full mt-10 hover:bg-[#c94a32] transition-all"
@@ -460,7 +489,6 @@ const Navbar = () => {
               Book the walkthrough
             </button>
           </form>
-
           <div className="mt-16 text-xs text-white/40 uppercase tracking-widest">
             Or reach out directly
             <div className="flex gap-4 mt-2 text-white/70 normal-case tracking-normal">

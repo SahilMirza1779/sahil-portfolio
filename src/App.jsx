@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -8,30 +8,108 @@ import Timeline from "./components/Timeline";
 import Services from "./components/Services";
 import Hobbies from "./components/Hobbies";
 import Projects from "./components/Projects";
-import Certifications from "./components/Certifications"; // Yahan naya import
+import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [showLoader, setShowLoader] = useState(true);
+  const [counter, setCounter] = useState(0);
+
+  const [text1, setText1] = useState("01010");
+  const [text2, setText2] = useState("01010");
+
   useEffect(() => {
-    // Yahan humara cinematic scroll animation initialize ho raha hai
-    AOS.init({
-      duration: 1000,
-      once: false, // Scroll up karne par reverse hoga
-      mirror: true, // Wapas aane par fir animate hoga
-      offset: 50,
-      easing: "ease-out-cubic",
-    });
+    const finalWord1 = "SAHIL";
+    const finalWord2 = "MIRZA";
+    const chars = "0101019876543210><}{][!@#$*%";
+
+    // Progress Bar Counter
+    const countInterval = setInterval(() => {
+      setCounter((prev) => {
+        const next = prev + 1;
+
+        // --- 85% par Name Reveal Logic ---
+        if (next >= 80) {
+          setText1(finalWord1);
+          setText2(finalWord2);
+        } else {
+          // Scramble logic jab tak 85% nahi hota
+          setText1(
+            finalWord1
+              .split("")
+              .map(() => chars[Math.floor(Math.random() * chars.length)])
+              .join(""),
+          );
+          setText2(
+            finalWord2
+              .split("")
+              .map(() => chars[Math.floor(Math.random() * chars.length)])
+              .join(""),
+          );
+        }
+
+        if (next >= 100) clearInterval(countInterval);
+        return next;
+      });
+    }, 30); // 3 seconds me load hoga
+
+    const hideTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3200);
+    const removeTimer = setTimeout(() => {
+      setShowLoader(false);
+    }, 4500);
+
+    return () => {
+      clearInterval(countInterval);
+      clearTimeout(hideTimer);
+      clearTimeout(removeTimer);
+    };
   }, []);
+
+  useEffect(() => {
+    if (!isLoading) {
+      AOS.init({
+        duration: 1000,
+        once: false,
+        mirror: true,
+        offset: 50,
+        easing: "ease-out-cubic",
+      });
+    }
+  }, [isLoading]);
 
   return (
     <div className="font-sans selection:bg-gray-500/30 selection:text-white bg-black overflow-hidden relative">
-      <Navbar />
+      {showLoader && (
+        <div
+          className={`fixed inset-0 z-[999] bg-[#030303] flex flex-col items-center justify-center transition-transform duration-1000 ease-[cubic-bezier(0.77,0,0.175,1)] ${isLoading ? "translate-y-0" : "-translate-y-full"}`}
+        >
+          <div className="flex flex-col items-center">
+            <h1 className="text-2xl md:text-4xl font-mono font-extrabold tracking-[0.4em] uppercase mb-8 opacity-90">
+              <span className="text-white">{text1}</span>{" "}
+              <span className="text-[#e3563b]">{text2}</span>
+            </h1>
+            <div className="w-48 md:w-64 h-[2px] bg-white/10 rounded-full overflow-hidden mb-6">
+              <div
+                className="h-full bg-[#e3563b] transition-all duration-75 ease-linear shadow-[0_0_10px_#e3563b]"
+                style={{ width: `${counter}%` }}
+              ></div>
+            </div>
+            <p className="text-white/50 text-[10px] md:text-xs font-bold tracking-[0.5em] font-mono">
+              {counter}%
+            </p>
+          </div>
+        </div>
+      )}
 
+      <Navbar />
       <main
         className="relative flex flex-col justify-end min-h-screen px-6 md:px-16 lg:px-24 pb-24 md:pb-32"
         id="home"
       >
-        {/* Background Image */}
+        {/* Background & Content stays same */}
         <div
           className="absolute inset-0 z-0 bg-black"
           data-aos="fade-in"
@@ -53,7 +131,6 @@ function App() {
           <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none"></div>
         </div>
 
-        {/* Content Area */}
         <div className="relative z-10 max-w-2xl">
           <h1
             data-aos="fade-right"
@@ -66,7 +143,6 @@ function App() {
             </span>{" "}
             <br />I build first.
           </h1>
-
           <p
             data-aos="fade-right"
             data-aos-delay="200"
@@ -75,7 +151,6 @@ function App() {
             .NET & MERN Stack Developer based in Surat. I specialize in building
             robust backend architectures and dynamic interfaces.
           </p>
-
           <div
             data-aos="fade-up"
             data-aos-delay="400"
@@ -130,10 +205,7 @@ function App() {
         <Timeline />
         <Services />
         <Projects />
-
-        {/* Naya Certifications Section Yahan Render Hoga */}
         <Certifications />
-
         <Hobbies />
         <Contact />
       </div>
