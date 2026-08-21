@@ -118,7 +118,27 @@ const Navbar = () => {
               JOURNEY
             </a>
 
-            {/* NAYA CREDENTIALS LINK */}
+            <a
+              href="#education"
+              className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.15em] text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 group"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-4 h-4 text-white/50 group-hover:text-[#e3563b] transition-colors"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"
+                />
+              </svg>
+              EDUCATION
+            </a>
+
             <a
               href="#certifications"
               className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.15em] text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 group"
@@ -346,7 +366,28 @@ const Navbar = () => {
               JOURNEY
             </a>
 
-            {/* NAYA CREDENTIALS MOBILE LINK */}
+            <a
+              href="#education"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-3 px-6 py-4 border-b border-[#e3563b]/20 hover:bg-white/10 transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="w-4 h-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"
+                />
+              </svg>
+              EDUCATION
+            </a>
+
             <a
               href="#certifications"
               onClick={() => setIsOpen(false)}
@@ -451,13 +492,29 @@ const Navbar = () => {
           <p className="text-sm text-gray-400 font-light mb-10">
             Drop your details, I'll set up a walkthrough call within 24 hours.
           </p>
-          <form className="space-y-6">
+
+          {/* UPDATED DRAWER FORM WITH FORMSUBMIT */}
+          <form
+            action="https://formsubmit.co/sahilmirza01779@gmail.com"
+            method="POST"
+            className="space-y-6"
+          >
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input
+              type="hidden"
+              name="_subject"
+              value="New Walkthrough Request from Portfolio!"
+            />
+
             <div className="space-y-2">
               <label className="text-xs font-bold text-white/60 tracking-wider uppercase">
                 Name *
               </label>
               <input
                 type="text"
+                name="name"
+                required
                 placeholder="Your name"
                 className="w-full bg-[#1c1c1c] border border-white/5 rounded-md p-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-[#e3563b]/50 transition-colors"
               />
@@ -468,6 +525,8 @@ const Navbar = () => {
               </label>
               <input
                 type="text"
+                name="contact"
+                required
                 placeholder="Email or phone"
                 className="w-full bg-[#1c1c1c] border border-white/5 rounded-md p-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-[#e3563b]/50 transition-colors"
               />
@@ -477,6 +536,7 @@ const Navbar = () => {
                 Notes
               </label>
               <textarea
+                name="notes"
                 placeholder="Anything you'd like me to know before the call."
                 rows="4"
                 className="w-full bg-[#1c1c1c] border border-white/5 rounded-md p-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-[#e3563b]/50 transition-colors resize-none"
@@ -489,6 +549,7 @@ const Navbar = () => {
               Book the walkthrough
             </button>
           </form>
+
           <div className="mt-16 text-xs text-white/40 uppercase tracking-widest">
             Or reach out directly
             <div className="flex gap-4 mt-2 text-white/70 normal-case tracking-normal">

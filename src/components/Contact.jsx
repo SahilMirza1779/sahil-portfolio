@@ -36,7 +36,7 @@ const Contact = () => {
               </p>
 
               <div className="space-y-6">
-                {/* 1. WhatsApp Link - UPDATED */}
+                {/* 1. WhatsApp Link */}
                 <a
                   href="https://wa.me/916354961591"
                   target="_blank"
@@ -44,7 +44,6 @@ const Contact = () => {
                   className="flex items-center gap-6 group cursor-pointer w-fit"
                 >
                   <div className="p-4 bg-white/[0.03] border border-white/10 rounded-2xl group-hover:border-[#e3563b]/50 group-hover:bg-[#e3563b]/10 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(227,86,59,0.2)]">
-                    {/* Standard outline phone icon, keeping visual consistency with Email icon */}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -164,13 +163,21 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Right Form */}
+          {/* Right Form - UPDATED WITH FORMSUBMIT */}
           <div
             data-aos="fade-left"
             data-aos-delay="200"
             className="lg:col-span-7"
           >
-            <form className="p-8 md:p-12 bg-[#080808] border border-white/5 rounded-[2.5rem] flex flex-col gap-8 hover:border-white/10 transition-colors duration-500 shadow-2xl">
+            <form
+              action="https://formsubmit.co/sahilmirza01779@gmail.com"
+              method="POST"
+              className="p-8 md:p-12 bg-[#080808] border border-white/5 rounded-[2.5rem] flex flex-col gap-8 hover:border-white/10 transition-colors duration-500 shadow-2xl"
+            >
+              {/* FormSubmit Configuration (Spam rokne aur design clean rakhne ke liye) */}
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <label className="block text-[10px] font-bold tracking-[0.2em] text-white/50 uppercase mb-3 ml-1">
@@ -178,6 +185,8 @@ const Contact = () => {
                   </label>
                   <input
                     type="text"
+                    name="name"
+                    required
                     placeholder="Sahil Mirza"
                     className="w-full bg-black border border-white/10 rounded-2xl p-5 text-white text-sm focus:outline-none focus:border-[#e3563b]/50 focus:bg-[#111] transition-all"
                   />
@@ -188,6 +197,8 @@ const Contact = () => {
                   </label>
                   <input
                     type="email"
+                    name="email"
+                    required
                     placeholder="your.email@example.com"
                     className="w-full bg-black border border-white/10 rounded-2xl p-5 text-white text-sm focus:outline-none focus:border-[#e3563b]/50 focus:bg-[#111] transition-all"
                   />
@@ -198,13 +209,17 @@ const Contact = () => {
                   Your Message
                 </label>
                 <textarea
+                  name="message"
+                  required
                   placeholder="Let's talk about..."
                   rows="5"
                   className="w-full bg-black border border-white/10 rounded-2xl p-5 text-white text-sm focus:outline-none focus:border-[#e3563b]/50 focus:bg-[#111] transition-all resize-none"
                 ></textarea>
               </div>
+
+              {/* Puraane 'button' type ko 'submit' mein badal diya */}
               <button
-                type="button"
+                type="submit"
                 className="w-full mt-4 bg-[#e3563b] hover:bg-[#c94930] text-white font-bold tracking-[0.2em] uppercase text-xs py-5 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-[#e3563b]/30 flex items-center justify-center gap-3 group"
               >
                 Send Message

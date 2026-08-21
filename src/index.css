@@ -12,26 +12,57 @@ body {
 /* ========================================= */
 /* 🚀 SOLID PREMIUM SCROLLBAR 🚀             */
 /* ========================================= */
-
-/* Scrollbar ki width (Dikhne mein asaan aur sleek) */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
-/* Scrollbar ka track (Background - Very Dark Gray) */
 ::-webkit-scrollbar-track {
   background: #0a0a0a;
-  border-left: 1px solid rgba(255, 255, 255, 0.05); /* Halka sa border separation ke liye */
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Scrollbar ka thumb (Draggable part - Visible Gray) */
 ::-webkit-scrollbar-thumb {
   background: #333333;
   border-radius: 10px;
-  border: 2px solid #0a0a0a; /* Padding effect ke liye */
+  border: 2px solid #0a0a0a;
 }
 
-/* Hover karne par Sexy Orange Glow */
 ::-webkit-scrollbar-thumb:hover {
   background: #e3563b;
+}
+
+/* ========================================= */
+/* 🚀 TECH STACK MARQUEE ANIMATION 🚀        */
+/* ========================================= */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ========================================= */
+/* 🚀 HIDE DEFAULT CURSOR (DESKTOP ONLY) 🚀  */
+/* ========================================= */
+@media (min-width: 768px) {
+  html,
+  body,
+  a,
+  button,
+  input,
+  textarea {
+    cursor: none !important;
+  }
 }

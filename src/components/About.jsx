@@ -106,7 +106,9 @@ const About = () => {
                 <h4 className="text-white font-bold text-sm tracking-wide">
                   MCA Graduate
                 </h4>
-                <p className="text-gray-500 text-xs mt-0.5">Surat, Gujarat</p>
+                <p className="text-gray-500 text-xs mt-0.5">
+                  Chandigarh University, Chandigarh
+                </p>
               </div>
             </div>
 

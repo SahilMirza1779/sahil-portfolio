@@ -3,10 +3,14 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 import Navbar from "./components/Navbar";
+import CustomCursor from "./components/CustomCursor";
+import TechStack from "./components/TechStack";
+import Footer from "./components/Footer";
 import About from "./components/About";
 import Timeline from "./components/Timeline";
 import Services from "./components/Services";
 import Hobbies from "./components/Hobbies";
+import Education from "./components/Education";
 import Projects from "./components/Projects";
 import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
@@ -123,7 +127,7 @@ function App() {
         >
           <div className="absolute top-0 right-0 w-full md:w-[45%] h-full">
             <img
-              src="/Sahil_photo.jpg"
+              src="/profile1.jpeg"
               alt="Sahil Mirza"
               className="w-full h-full object-cover object-center transform -scale-x-100 opacity-80"
               onError={(e) => {
@@ -208,12 +212,16 @@ function App() {
 
       <div className="relative z-20 bg-black">
         <About />
+        <TechStack />
         <Timeline />
+        <Education />
         <Services />
         <Projects />
         <Certifications />
         <Hobbies />
         <Contact />
+        <CustomCursor />
+        <Footer />
       </div>
     </div>
   );
