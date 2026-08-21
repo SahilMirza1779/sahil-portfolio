@@ -24,20 +24,19 @@ const CustomCursor = () => {
 
   return (
     <>
-      {/* Main Solid Dot */}
+      {/* Main Solid Dot - z-index sabse high kar diya hai */}
       <div
-        className="fixed top-0 left-0 pointer-events-none z-[99999] hidden md:block bg-[#e3563b] rounded-full transition-transform duration-75 ease-out"
+        className="fixed top-0 left-0 pointer-events-none z-[999999] hidden md:block bg-[#e3563b] rounded-full transition-transform duration-75 ease-out"
         style={{
           width: "10px",
           height: "10px",
-          // JS math for perfect centering without CSS conflicts
           transform: `translate3d(${position.x - 5}px, ${position.y - 5}px, 0) scale(${isHovering ? 2.5 : 1})`,
         }}
       ></div>
 
-      {/* Outer Glow Ring (Trails behind smoothly) */}
+      {/* Outer Glow Ring */}
       <div
-        className="fixed top-0 left-0 pointer-events-none z-[99998] hidden md:block border border-[#e3563b]/50 rounded-full transition-all duration-300 ease-out"
+        className="fixed top-0 left-0 pointer-events-none z-[999998] hidden md:block border border-[#e3563b]/50 rounded-full transition-all duration-300 ease-out"
         style={{
           width: "36px",
           height: "36px",
