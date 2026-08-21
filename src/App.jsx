@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Analytics } from "@vercel/analytics/react"; // 🚀 NAYA IMPORT
 
 import Navbar from "./components/Navbar";
-import CustomCursor from "./components/CustomCursor";
 import TechStack from "./components/TechStack";
 import Footer from "./components/Footer";
 import About from "./components/About";
 import Timeline from "./components/Timeline";
 import Services from "./components/Services";
 import Hobbies from "./components/Hobbies";
-import Education from "./components/Education";
 import Projects from "./components/Projects";
+import Education from "./components/Education";
 import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
+import InteractiveShowcase from "./components/InteractiveShowcase";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,9 +32,6 @@ function App() {
     const countInterval = setInterval(() => {
       setCounter((prev) => {
         const next = prev + 1;
-
-        // --- Ek-ek letter reveal logic (step-by-step) ---
-        // Progress ke hisaab se letters unlock honge
         const revealIndex = Math.floor((next / 100) * 10);
 
         setText1(
@@ -50,7 +48,7 @@ function App() {
           finalWord2
             .split("")
             .map((letter, i) => {
-              if (i + 5 < revealIndex) return finalWord2[i]; // +5 taki pehle SAHIL ho jaye phir MIRZA
+              if (i + 5 < revealIndex) return finalWord2[i];
               return chars[Math.floor(Math.random() * chars.length)];
             })
             .join(""),
@@ -88,25 +86,22 @@ function App() {
   }, [isLoading]);
 
   return (
-    <div className="font-sans selection:bg-gray-500/30 selection:text-white bg-black overflow-hidden relative">
+    <div className="font-sans selection:bg-[#e3563b]/30 selection:text-white bg-black overflow-hidden relative">
       {showLoader && (
         <div
           className={`fixed inset-0 z-[999] bg-[#030303] flex flex-col items-center justify-center transition-transform duration-1000 ease-[cubic-bezier(0.77,0,0.175,1)] ${isLoading ? "translate-y-0" : "-translate-y-full"}`}
         >
           <div className="flex flex-col items-center">
-            {/* Typewriter Effect Name Reveal */}
             <h1 className="text-2xl md:text-4xl font-mono font-extrabold tracking-[0.4em] uppercase mb-8 opacity-90">
               <span className="text-white">{text1}</span>{" "}
               <span className="text-[#e3563b]">{text2}</span>
             </h1>
-
             <div className="w-48 md:w-64 h-[2px] bg-white/10 rounded-full overflow-hidden mb-6">
               <div
                 className="h-full bg-[#e3563b] transition-all duration-75 ease-linear shadow-[0_0_10px_#e3563b]"
                 style={{ width: `${counter}%` }}
               ></div>
             </div>
-
             <p className="text-white/50 text-[10px] md:text-xs font-bold tracking-[0.5em] font-mono">
               {counter}%
             </p>
@@ -115,11 +110,12 @@ function App() {
       )}
 
       <Navbar />
-      {/* ... Baki website content same rahega ... */}
+
       <main
         className="relative flex flex-col justify-end min-h-screen px-6 md:px-16 lg:px-24 pb-24 md:pb-32"
         id="home"
       >
+        {/* Same background styling */}
         <div
           className="absolute inset-0 z-0 bg-black"
           data-aos="fade-in"
@@ -127,7 +123,7 @@ function App() {
         >
           <div className="absolute top-0 right-0 w-full md:w-[45%] h-full">
             <img
-              src="/profile1.jpeg"
+              src="/Sahil_photo.jpg"
               alt="Sahil Mirza"
               className="w-full h-full object-cover object-center transform -scale-x-100 opacity-80"
               onError={(e) => {
@@ -215,14 +211,17 @@ function App() {
         <TechStack />
         <Timeline />
         <Education />
+        <Certifications />
         <Services />
         <Projects />
-        <Certifications />
+        <InteractiveShowcase />
         <Hobbies />
         <Contact />
-        <CustomCursor />
         <Footer />
       </div>
+
+      {/* 🚀 VERCEL ANALYTICS YAHAN RENDER HOGA 🚀 */}
+      <Analytics />
     </div>
   );
 }

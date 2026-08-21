@@ -1,4 +1,49 @@
+import { useState } from "react";
+
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Ye page ko redirect hone se rokega
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      // FormSubmit ka AJAX endpoint
+      const response = await fetch(
+        "https://formsubmit.co/ajax/sahilmirza01779@gmail.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: data.name,
+            email: data.email,
+            message: data.message,
+            _subject: "New Message from Portfolio Contact Form!",
+          }),
+        },
+      );
+
+      if (response.ok) {
+        setIsSent(true);
+        e.target.reset(); // Form clear kar dega
+        // 5 second baad wapas form dikhane ke liye (optional)
+        setTimeout(() => setIsSent(false), 5000);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Oops! Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -101,13 +146,12 @@ const Contact = () => {
                 </a>
               </div>
 
-              {/* Social Profiles Row */}
+              {/* Social Profiles */}
               <div className="mt-12">
                 <p className="text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase mb-6">
                   Social Profiles
                 </p>
                 <div className="flex items-center gap-4">
-                  {/* GitHub */}
                   <a
                     href="https://github.com/SahilMirza1779"
                     target="_blank"
@@ -126,8 +170,6 @@ const Contact = () => {
                       />
                     </svg>
                   </a>
-
-                  {/* LinkedIn */}
                   <a
                     href="https://www.linkedin.com/in/sahil-mirza-sahil-mirzadev/"
                     target="_blank"
@@ -142,8 +184,6 @@ const Contact = () => {
                       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                     </svg>
                   </a>
-
-                  {/* Instagram */}
                   <a
                     href="https://www.instagram.com/sahil_mirza_779/"
                     target="_blank"
@@ -163,68 +203,120 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Right Form - UPDATED WITH FORMSUBMIT */}
+          {/* Right Form with AJAX Submission */}
           <div
             data-aos="fade-left"
             data-aos-delay="200"
             className="lg:col-span-7"
           >
-            <form
-              action="https://formsubmit.co/sahilmirza01779@gmail.com"
-              method="POST"
-              className="p-8 md:p-12 bg-[#080808] border border-white/5 rounded-[2.5rem] flex flex-col gap-8 hover:border-white/10 transition-colors duration-500 shadow-2xl"
-            >
-              {/* FormSubmit Configuration (Spam rokne aur design clean rakhne ke liye) */}
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="table" />
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <label className="block text-[10px] font-bold tracking-[0.2em] text-white/50 uppercase mb-3 ml-1">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    placeholder="Sahil Mirza"
-                    className="w-full bg-black border border-white/10 rounded-2xl p-5 text-white text-sm focus:outline-none focus:border-[#e3563b]/50 focus:bg-[#111] transition-all"
-                  />
+            {isSent ? (
+              /* Success Message Animation */
+              <div className="p-8 md:p-16 bg-[#080808] border border-[#e3563b]/30 rounded-[2.5rem] flex flex-col items-center justify-center text-center h-full shadow-[0_0_30px_rgba(227,86,59,0.15)] animate-fade-in">
+                <div className="w-20 h-20 bg-[#e3563b]/10 rounded-full flex items-center justify-center mb-6 text-[#e3563b]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="w-10 h-10"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
                 </div>
-                <div>
-                  <label className="block text-[10px] font-bold tracking-[0.2em] text-white/50 uppercase mb-3 ml-1">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    placeholder="your.email@example.com"
-                    className="w-full bg-black border border-white/10 rounded-2xl p-5 text-white text-sm focus:outline-none focus:border-[#e3563b]/50 focus:bg-[#111] transition-all"
-                  />
-                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">
+                  Message Sent!
+                </h3>
+                <p className="text-gray-400">
+                  Your message is securely sent to{" "}
+                  <span className="text-white font-medium">Sahil Mirza</span>.
+                  I'll get back to you shortly.
+                </p>
               </div>
-              <div>
-                <label className="block text-[10px] font-bold tracking-[0.2em] text-white/50 uppercase mb-3 ml-1">
-                  Your Message
-                </label>
-                <textarea
-                  name="message"
-                  required
-                  placeholder="Let's talk about..."
-                  rows="5"
-                  className="w-full bg-black border border-white/10 rounded-2xl p-5 text-white text-sm focus:outline-none focus:border-[#e3563b]/50 focus:bg-[#111] transition-all resize-none"
-                ></textarea>
-              </div>
-
-              {/* Puraane 'button' type ko 'submit' mein badal diya */}
-              <button
-                type="submit"
-                className="w-full mt-4 bg-[#e3563b] hover:bg-[#c94930] text-white font-bold tracking-[0.2em] uppercase text-xs py-5 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-[#e3563b]/30 flex items-center justify-center gap-3 group"
+            ) : (
+              /* Actual Form */
+              <form
+                onSubmit={handleSubmit}
+                className="p-8 md:p-12 bg-[#080808] border border-white/5 rounded-[2.5rem] flex flex-col gap-8 hover:border-white/10 transition-colors duration-500 shadow-2xl"
               >
-                Send Message
-              </button>
-            </form>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <label className="block text-[10px] font-bold tracking-[0.2em] text-white/50 uppercase mb-3 ml-1">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      placeholder="Sahil Mirza"
+                      className="w-full bg-black border border-white/10 rounded-2xl p-5 text-white text-sm focus:outline-none focus:border-[#e3563b]/50 focus:bg-[#111] transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-bold tracking-[0.2em] text-white/50 uppercase mb-3 ml-1">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      placeholder="your.email@example.com"
+                      className="w-full bg-black border border-white/10 rounded-2xl p-5 text-white text-sm focus:outline-none focus:border-[#e3563b]/50 focus:bg-[#111] transition-all"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-[10px] font-bold tracking-[0.2em] text-white/50 uppercase mb-3 ml-1">
+                    Your Message
+                  </label>
+                  <textarea
+                    name="message"
+                    required
+                    placeholder="Let's talk about..."
+                    rows="5"
+                    className="w-full bg-black border border-white/10 rounded-2xl p-5 text-white text-sm focus:outline-none focus:border-[#e3563b]/50 focus:bg-[#111] transition-all resize-none"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`w-full mt-4 text-white font-bold tracking-[0.2em] uppercase text-xs py-5 rounded-2xl transition-all duration-300 shadow-lg flex items-center justify-center gap-3 group ${isSubmitting ? "bg-gray-700 cursor-not-allowed" : "bg-[#e3563b] hover:bg-[#c94930] hover:shadow-[#e3563b]/30"}`}
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center gap-2">
+                      <svg
+                        className="animate-spin h-4 w-4 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    "Send Message"
+                  )}
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </div>

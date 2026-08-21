@@ -4,6 +4,10 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
+  // Drawer Form States
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+
   useEffect(() => {
     if (isDrawerOpen || isOpen) {
       document.body.style.overflow = "hidden";
@@ -14,6 +18,42 @@ const Navbar = () => {
       document.body.style.overflow = "auto";
     };
   }, [isDrawerOpen, isOpen]);
+
+  const handleDrawerSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/ajax/sahilmirza01779@gmail.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: data.name,
+            contact: data.contact,
+            notes: data.notes,
+            _subject: "New Walkthrough Request from Portfolio!",
+          }),
+        },
+      );
+
+      if (response.ok) {
+        setIsSent(true);
+        e.target.reset();
+        setTimeout(() => setIsSent(false), 5000);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <>
@@ -49,7 +89,6 @@ const Navbar = () => {
               </svg>
               PROJECTS
             </a>
-
             <a
               href="#hobbies"
               className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.15em] text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 group"
@@ -75,7 +114,6 @@ const Navbar = () => {
               </svg>
               HOBBIES
             </a>
-
             <a
               href="#about"
               className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.15em] text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 group"
@@ -96,7 +134,6 @@ const Navbar = () => {
               </svg>
               ABOUT
             </a>
-
             <a
               href="#journey"
               className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.15em] text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 group"
@@ -117,7 +154,6 @@ const Navbar = () => {
               </svg>
               JOURNEY
             </a>
-
             <a
               href="#education"
               className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.15em] text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 group"
@@ -138,7 +174,6 @@ const Navbar = () => {
               </svg>
               EDUCATION
             </a>
-
             <a
               href="#certifications"
               className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.15em] text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 group"
@@ -159,7 +194,6 @@ const Navbar = () => {
               </svg>
               CREDENTIALS
             </a>
-
             <a
               href="/resume.pdf"
               target="_blank"
@@ -182,7 +216,6 @@ const Navbar = () => {
               </svg>
               RESUME
             </a>
-
             <a
               href="#contact"
               className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.15em] text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 group"
@@ -205,7 +238,6 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* Drawer Button */}
           <button
             onClick={() => setIsDrawerOpen(true)}
             className="w-10 h-10 bg-white/5 hover:bg-[#e3563b]/10 rounded-full flex items-center justify-center text-white/70 hover:text-[#e3563b] hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-white/10 hover:border-[#e3563b]/50 hover:shadow-[0_0_15px_rgba(227,86,59,0.3)] ml-4 focus:outline-none"
@@ -227,7 +259,7 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu (unchanged logic) */}
         <div className="lg:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -267,7 +299,6 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Menu Dropdown */}
         {isOpen && (
           <div
             className="lg:hidden fixed inset-0 bg-black/40 backdrop-blur-md z-[45]"
@@ -365,7 +396,6 @@ const Navbar = () => {
               </svg>
               JOURNEY
             </a>
-
             <a
               href="#education"
               onClick={() => setIsOpen(false)}
@@ -387,7 +417,6 @@ const Navbar = () => {
               </svg>
               EDUCATION
             </a>
-
             <a
               href="#certifications"
               onClick={() => setIsOpen(false)}
@@ -409,7 +438,6 @@ const Navbar = () => {
               </svg>
               CREDENTIALS
             </a>
-
             <a
               href="/resume.pdf"
               target="_blank"
@@ -463,6 +491,7 @@ const Navbar = () => {
         className={`fixed inset-0 bg-black/60 z-[100] backdrop-blur-none transition-all duration-300 ease-in-out ${isDrawerOpen ? "opacity-100 backdrop-blur-sm" : "opacity-0 backdrop-blur-none pointer-events-none"}`}
         onClick={() => setIsDrawerOpen(false)}
       ></div>
+
       <div
         className={`fixed top-0 right-0 h-screen w-full md:w-[450px] bg-[#141414] z-[101] shadow-2xl transform transition-transform duration-500 ease-in-out flex flex-col ${isDrawerOpen ? "translate-x-0" : "translate-x-full"}`}
       >
@@ -487,68 +516,120 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
+
         <div className="flex-grow p-10 overflow-y-auto">
-          <h2 className="text-4xl font-light text-white mb-2">Let's talk.</h2>
-          <p className="text-sm text-gray-400 font-light mb-10">
-            Drop your details, I'll set up a walkthrough call within 24 hours.
-          </p>
+          {isSent ? (
+            /* Drawer Success Message */
+            <div className="flex flex-col items-center justify-center h-full text-center animate-fade-in mt-10">
+              <div className="w-16 h-16 bg-[#e3563b]/10 rounded-full flex items-center justify-center mb-4 text-[#e3563b]">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-8 h-8"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                Request Sent!
+              </h3>
+              <p className="text-sm text-gray-400">
+                Your message has been sent to{" "}
+                <span className="text-white">Sahil Mirza</span>. I'll arrange
+                the call soon.
+              </p>
+            </div>
+          ) : (
+            /* Drawer Form */
+            <>
+              <h2 className="text-4xl font-light text-white mb-2">
+                Let's talk.
+              </h2>
+              <p className="text-sm text-gray-400 font-light mb-10">
+                Drop your details, I'll set up a walkthrough call within 24
+                hours.
+              </p>
 
-          {/* UPDATED DRAWER FORM WITH FORMSUBMIT */}
-          <form
-            action="https://formsubmit.co/sahilmirza01779@gmail.com"
-            method="POST"
-            className="space-y-6"
-          >
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_template" value="table" />
-            <input
-              type="hidden"
-              name="_subject"
-              value="New Walkthrough Request from Portfolio!"
-            />
+              <form onSubmit={handleDrawerSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-white/60 tracking-wider uppercase">
+                    Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    placeholder="Your name"
+                    className="w-full bg-[#1c1c1c] border border-white/5 rounded-md p-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-[#e3563b]/50 transition-colors"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-white/60 tracking-wider uppercase">
+                    Contact *
+                  </label>
+                  <input
+                    type="text"
+                    name="contact"
+                    required
+                    placeholder="Email or phone"
+                    className="w-full bg-[#1c1c1c] border border-white/5 rounded-md p-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-[#e3563b]/50 transition-colors"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-white/60 tracking-wider uppercase">
+                    Notes
+                  </label>
+                  <textarea
+                    name="notes"
+                    placeholder="Anything you'd like me to know before the call."
+                    rows="4"
+                    className="w-full bg-[#1c1c1c] border border-white/5 rounded-md p-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-[#e3563b]/50 transition-colors resize-none"
+                  ></textarea>
+                </div>
 
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-white/60 tracking-wider uppercase">
-                Name *
-              </label>
-              <input
-                type="text"
-                name="name"
-                required
-                placeholder="Your name"
-                className="w-full bg-[#1c1c1c] border border-white/5 rounded-md p-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-[#e3563b]/50 transition-colors"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-white/60 tracking-wider uppercase">
-                Contact *
-              </label>
-              <input
-                type="text"
-                name="contact"
-                required
-                placeholder="Email or phone"
-                className="w-full bg-[#1c1c1c] border border-white/5 rounded-md p-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-[#e3563b]/50 transition-colors"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-white/60 tracking-wider uppercase">
-                Notes
-              </label>
-              <textarea
-                name="notes"
-                placeholder="Anything you'd like me to know before the call."
-                rows="4"
-                className="w-full bg-[#1c1c1c] border border-white/5 rounded-md p-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-[#e3563b]/50 transition-colors resize-none"
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-[#e3563b] text-white font-bold tracking-[0.2em] py-4 rounded-full mt-10 hover:bg-[#c94a32] transition-all"
-            >
-              Book the walkthrough
-            </button>
-          </form>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`w-full text-white font-bold tracking-[0.2em] py-4 rounded-full mt-10 transition-all flex justify-center items-center gap-2 ${isSubmitting ? "bg-gray-700 cursor-not-allowed" : "bg-[#e3563b] hover:bg-[#c94a32]"}`}
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center gap-2">
+                      <svg
+                        className="animate-spin h-4 w-4 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    "Book the walkthrough"
+                  )}
+                </button>
+              </form>
+            </>
+          )}
 
           <div className="mt-16 text-xs text-white/40 uppercase tracking-widest">
             Or reach out directly
