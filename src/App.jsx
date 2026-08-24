@@ -17,6 +17,12 @@ import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
 import CustomCursor from "./components/CustomCursor";
 import InteractiveShowcase from "./components/InteractiveShowcase";
+import SocialConnect from "./components/SocialConnect";
+
+// 🚀 Naye Imports 🚀
+import FloatingDock from "./components/FloatingDock";
+import Testimonials from "./components/Testimonials";
+import MagneticButton from "./components/MagneticButton";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -112,9 +118,8 @@ function App() {
 
   return (
     <div className="font-sans selection:bg-[#e3563b]/30 selection:text-white bg-black overflow-hidden relative">
-      {/* 🚀 HAMARA PREMIUM ORANGE CURSOR YAHAN HAI 🚀 */}
       <CustomCursor />
-
+      <FloatingDock /> {/* 🚀 Dock Add Kar Diya 🚀 */}
       {showLoader && (
         <div
           className={`fixed inset-0 z-[999] bg-[#030303] flex flex-col items-center justify-center transition-transform duration-1000 ease-[cubic-bezier(0.77,0,0.175,1)] ${isLoading ? "translate-y-0" : "-translate-y-full"}`}
@@ -136,7 +141,6 @@ function App() {
           </div>
         </div>
       )}
-
       <div className="relative z-10">
         <Navbar />
 
@@ -185,14 +189,16 @@ function App() {
               .NET & MERN Stack Developer based in Surat. I specialize in
               building robust backend architectures and dynamic interfaces.
             </p>
+
             <div
               data-aos="fade-up"
               data-aos-delay="400"
               className="flex flex-wrap gap-4 pt-4 md:pt-6"
             >
-              <a
+              {/* 🚀 Magnetic Buttons lag gaye hain 🚀 */}
+              <MagneticButton
                 href="#projects"
-                className="px-8 py-3.5 bg-[#e3563b] text-white text-xs font-bold tracking-[0.2em] uppercase rounded-full hover:bg-[#c94930] hover:shadow-[0_0_25px_rgba(227,86,59,0.3)] transition-all duration-300 flex items-center gap-2 group"
+                className="px-8 py-3.5 bg-[#e3563b] text-white text-xs font-bold tracking-[0.2em] uppercase rounded-full hover:bg-[#c94930] hover:shadow-[0_0_25px_rgba(227,86,59,0.3)] flex items-center gap-2 group cursor-none"
               >
                 View My Work
                 <svg
@@ -209,10 +215,11 @@ function App() {
                     d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
                   />
                 </svg>
-              </a>
-              <a
+              </MagneticButton>
+
+              <MagneticButton
                 href="#contact"
-                className="px-8 py-3.5 border border-white/20 text-white text-xs font-bold tracking-[0.2em] uppercase rounded-full hover:border-[#e3563b] hover:text-[#e3563b] hover:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all duration-300 flex items-center gap-2"
+                className="px-8 py-3.5 border border-white/20 text-white text-xs font-bold tracking-[0.2em] uppercase rounded-full hover:border-[#e3563b] hover:text-[#e3563b] hover:shadow-[0_0_15px_rgba(255,255,255,0.05)] flex items-center gap-2 cursor-none"
               >
                 Let's Collaborate
                 <svg
@@ -229,7 +236,7 @@ function App() {
                     d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
                   />
                 </svg>
-              </a>
+              </MagneticButton>
             </div>
           </div>
         </main>
@@ -242,8 +249,10 @@ function App() {
           <Certifications />
           <Services />
           <Projects />
+          <Testimonials /> {/* 🚀 Testimonials Add Kar Diya 🚀 */}
           <InteractiveShowcase />
           <Hobbies />
+          <SocialConnect />
           <Contact />
           <Footer />
         </div>
