@@ -53,6 +53,35 @@ body {
 }
 
 /* ========================================= */
+/* 🚀 NAYA: FLOWING MENU & TEXT STROKE 🚀    */
+/* ========================================= */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+.animate-scroll-reverse {
+  animation: scroll 20s linear infinite reverse;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+  color: transparent;
+  transition: all 0.3s ease;
+}
+.text-stroke:hover {
+  color: #e3563b;
+  -webkit-text-stroke: 0px;
+}
+
+/* ========================================= */
 /* 🚀 HIDE DEFAULT CURSOR (DESKTOP ONLY) 🚀  */
 /* ========================================= */
 @media (min-width: 768px) {

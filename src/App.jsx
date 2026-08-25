@@ -119,7 +119,7 @@ function App() {
   return (
     <div className="font-sans selection:bg-[#e3563b]/30 selection:text-white bg-black overflow-hidden relative">
       <CustomCursor />
-      <FloatingDock /> {/* 🚀 Dock Add Kar Diya 🚀 */}
+      <FloatingDock />
       {showLoader && (
         <div
           className={`fixed inset-0 z-[999] bg-[#030303] flex flex-col items-center justify-center transition-transform duration-1000 ease-[cubic-bezier(0.77,0,0.175,1)] ${isLoading ? "translate-y-0" : "-translate-y-full"}`}
@@ -195,7 +195,6 @@ function App() {
               data-aos-delay="400"
               className="flex flex-wrap gap-4 pt-4 md:pt-6"
             >
-              {/* 🚀 Magnetic Buttons lag gaye hain 🚀 */}
               <MagneticButton
                 href="#projects"
                 className="px-8 py-3.5 bg-[#e3563b] text-white text-xs font-bold tracking-[0.2em] uppercase rounded-full hover:bg-[#c94930] hover:shadow-[0_0_25px_rgba(227,86,59,0.3)] flex items-center gap-2 group cursor-none"
@@ -249,7 +248,7 @@ function App() {
           <Certifications />
           <Services />
           <Projects />
-          <Testimonials /> {/* 🚀 Testimonials Add Kar Diya 🚀 */}
+          <Testimonials />
           <InteractiveShowcase />
           <Hobbies />
           <SocialConnect />

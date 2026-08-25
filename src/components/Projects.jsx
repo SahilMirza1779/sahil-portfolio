@@ -59,7 +59,6 @@ const Projects = () => {
 
         <div className="flex flex-col gap-12 md:gap-24">
           {projects.map((project, index) => (
-            /* AOS ko parent div par rakha hai taaki Tilt ke sath clash na ho */
             <div key={index} data-aos={project.aos}>
               <Tilt
                 tiltMaxAngleX={5}
